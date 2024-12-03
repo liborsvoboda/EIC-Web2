@@ -1,0 +1,13 @@
+{
+  "name": "ace-builds-vitejs",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "ace-builds": "^1.15.3",
+    "vite": "^4.0.3"
+  },
+  "type": "module"
+}

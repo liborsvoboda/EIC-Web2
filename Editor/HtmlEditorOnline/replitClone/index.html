@@ -1,0 +1,336 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Kaboom Editor</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link href="/static/images/code.png" rel="icon" />
+    <link
+      rel="stylesheet"
+      data-name="vs/editor/editor.main"
+      href="https://unpkg.com/monaco-editor@latest/min/vs/editor/editor.main.css"
+    />
+    <style>
+      body {
+        overflow: hidden;
+        font-family: "Roboto";
+        margin: 0;
+      }
+
+      .files {
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 45%;
+        float: right;
+      }
+
+      #editor {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 100%;
+        width: 55%;
+      }
+
+      #top {
+        top: 10px;
+        float: right;
+        z-index: 1000;
+        position: absolute;
+        left: 83%;
+      }
+
+      .btn {
+        background: white;
+        color: blue;
+        height: 30px;
+        border: 1px solid blue;
+        border-radius: 5px;
+        cursor: pointer;
+        user-select: none;
+        transition: all 0.3s ease-in-out;
+        font-size: 18px;
+      }
+
+      .btn:hover {
+        background: blue;
+        color: white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="root" class="files"></div>
+    <div id="editor"></div>
+    <script>
+      var language = "html";
+      var require = {
+        paths: { vs: "https://unpkg.com/monaco-editor@latest/min/vs" },
+      };
+    </script>
+    <script>
+      var fname = "code";
+      const bc = new BroadcastChannel("monaco-new");
+
+      bc.onmessage = (event) => {
+        if (event.data === "Am I the first?") {
+          bc.postMessage(`No you're not.`);
+          alert("Another tab of this site just got opened");
+        }
+        if (event.data === `No you're not.`) {
+          fname = window.prompt("Enter a name for this file");
+          fileFormat = fname.split(".")[1];
+          if (fileFormat === "html") {
+            language = "html";
+          }
+          if (fileFormat === "js") {
+            language = "javascript";
+          }
+          if (fileFormat === "css") {
+            language = "css";
+          }
+        }
+      };
+
+      bc.postMessage("Am I the first?");
+    </script>
+    <div class="context-menu" style="display: none">
+      <br />
+      <ul>
+        <li onclick="save()">Save Changes</li>
+        <li onclick="run()">Open in new tab</li>
+        <li onclick="theme(this)">Dark</li>
+      </ul>
+      <br />
+    </div>
+    <iframe
+      srcdoc="
+    <!DOCTYPE html> 
+    <html> 
+    <head>        
+    </head>
+    <body>
+    </body> 
+    </html>
+    "
+      frameborder="0"
+    ></iframe>
+    <div id="top">
+      <button class="btn" id="savebtn" onclick="save()">Saved</button>
+      <button onclick="run()" class="btn">Open in new tab</button>
+      <button onclick="theme(this)" class="btn">Dark</button>
+    </div>
+
+    <script src="https://unpkg.com/monaco-editor@latest/min/vs/loader.js"></script>
+    <script src="https://unpkg.com/monaco-editor@latest/min/vs/editor/editor.main.nls.js"></script>
+    <script src="https://unpkg.com/monaco-editor@latest/min/vs/editor/editor.main.js"></script>
+    <script src="https://unpkg.com/emmet-monaco-es/dist/emmet-monaco.min.js"></script>
+    <script>
+      var editor = monaco.editor.create(document.getElementById("editor"), {
+        value: [
+          `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>`,
+        ].join("\n"),
+        language: language,
+      });
+      fetch("/kbmFuncs.js")
+        .then((response) => response.text())
+        .then((response) =>
+          monaco.languages.typescript.javascriptDefaults.addExtraLib(response)
+        );
+
+      if (localStorage.getItem(fname)) {
+        editor.setValue(localStorage.getItem(fname));
+      }
+      var height = window.innerHeight;
+      document.querySelector("iframe").style.height = String(height) + "px";
+      var orig = editor.getValue();
+      var content = editor.getValue();
+      var element = document.getElementById("editor");
+      element.addEventListener("keyup", () => {
+        if (editor.getValue() == orig) {
+          document.body.removeAttribute("onbeforeunload");
+          return;
+        }
+        if (editor.getValue() != content) {
+          change("Save");
+          document.body.setAttribute("onbeforeunload", "return ''");
+        }
+      });
+      element.addEventListener("keydown", (event) => {
+        if (event.key === "s" && (event.metaKey || event.ctrlKey)) {
+          event.preventDefault();
+          save();
+        }
+      });
+
+      if (language === "html") {
+        emmetMonaco.emmetHTML(monaco);
+      }
+      if (language === "javascript") {
+        emmetMonaco.emmetJSX(monaco);
+      }
+      if (language === "css") {
+        emmetMonaco.emmetCSS(monaco);
+      }
+
+      function change(text) {
+        document.getElementById("savebtn").innerHTML = text;
+      }
+
+      function run() {
+        content = editor.getValue();
+        change("Saving...");
+        localStorage.setItem(fname, content);
+        change("Saved");
+        content += `<script>
+var scriptEls = [...document.getElementsByTagName("script")];
+
+scriptEls.forEach((element) => {
+  if (element.src) {
+    var src = element.src;
+    element.remove();
+
+    src = src.split(location.host + "/")[1];
+
+    var code = localStorage.getItem(src);
+
+    if (code) {
+      eval(code);
+    } else {
+      console.error('404: Script' + src + 'not found');
+    }
+  }
+});
+
+var linkEls = [...document.getElementsByTagName("link")];
+
+linkEls.forEach((element) => {
+  if (element.href) {
+    var href = element.href;
+    element.remove();
+
+    href = href.split(location.host + "/")[1];
+
+    var code = localStorage.getItem(href);
+
+	var style = document.createElement('style')
+	style.innerHTML = code;
+	document.body.appendChild(style);
+  }
+});
+		<slashscript>`;
+        content = content.replace("slash", "/");
+        document.querySelector("iframe").srcdoc = content;
+        document.body.removeAttribute("onbeforeunload");
+        let tab = window.open("", "_blank");
+        tab.document.write(content);
+      }
+
+      function save() {
+        content = editor.getValue();
+        change("Saving...");
+        localStorage.setItem(fname, content);
+        change("Saved");
+        content += `<script>
+var scriptEls = [...document.getElementsByTagName("script")];
+
+scriptEls.forEach((element) => {
+  if (element.src) {
+    var src = element.src;
+    element.remove();
+
+    src = src.split(location.host + "/")[1];
+
+    var code = localStorage.getItem(src);
+
+    if (code) {
+      eval(code);
+    } else {
+      console.error('404: Script' + src + 'not found');
+    }
+  }
+});
+
+var linkEls = [...document.getElementsByTagName("link")];
+
+linkEls.forEach((element) => {
+  if (element.href) {
+    var href = element.href;
+    element.remove();
+
+    href = href.split(location.host + "/")[1];
+
+    var code = localStorage.getItem(href);
+
+    if (code) {
+      eval(code);
+    } else {
+      console.error('404: Link' + href + 'not found');
+    }
+  }
+});
+		<slashscript>`;
+        content = content.replace("slash", "/");
+        document.querySelector("iframe").srcdoc = content;
+        document.body.removeAttribute("onbeforeunload");
+      }
+
+      function toTitleCase(str) {
+        return str.replace(/\w\S*/g, function (txt) {
+          return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        });
+      }
+
+      function theme(el) {
+        var theme = localStorage.getItem("theme");
+        if (!theme) {
+          localStorage.setItem("theme", "light");
+        }
+        if (theme == "light") {
+          monaco.editor.setTheme("vs-dark");
+          localStorage.setItem("theme", "dark");
+        } else {
+          monaco.editor.setTheme("vs");
+          localStorage.setItem("theme", "light");
+        }
+
+        el.innerHTML = toTitleCase(theme);
+      }
+
+      var theme = localStorage.getItem("theme");
+      if (theme == "light") {
+        monaco.editor.setTheme("vs");
+      } else {
+        monaco.editor.setTheme("vs-dark");
+      }
+
+function reactUI(e) {
+	fetch('js/index.js').then(response => data = response.text()).then(data => {
+		eval(data)
+	})
+}
+	  document.addEventListener('refershReactUI', reactUI)
+    </script>
+
+<script src="js/index.js"></script>
+
+  </body>
+</html>

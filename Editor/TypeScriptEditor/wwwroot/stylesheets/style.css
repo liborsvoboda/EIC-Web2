@@ -1,0 +1,702 @@
+body {
+    overflow: hidden;
+}
+
+.ltable {
+    display: table;
+}
+
+.lrow {
+    display: table-row;
+}
+
+.lcell {
+    display: table-cell;
+}
+
+.stretch-v {
+    height: 100%;
+}
+
+.stretch {
+    width: 100%;
+    height: 100%;
+}
+
+.editor-tabs {
+    clear: both;
+}
+
+    .editor-tabs .nav {
+        margin-bottom: 0px !important;
+    }
+
+.item .description {
+    color: gray;
+    padding-left: 5px;
+}
+
+.item .date {
+    color: #AAAAAA;
+    padding-right: 5px;
+    margin-top: -2px;
+}
+
+.notification {
+    position: absolute;
+    right: 0px;
+    width: 30%;
+    text-align: center;
+    border-bottom-right-radius: inherit;
+    border-top-left-radius: inherit;
+    z-index: 9999;
+}
+
+#editorLayout {
+    height: 100%;
+    width: 100%;
+}
+
+    #editorLayout tr:first-child {
+    }
+
+    #editorLayout th {
+        padding: 0px;
+    }
+
+    #editorLayout td {
+        border-right: 5px solid #CCCCCC;
+        padding: 0px;
+    }
+
+        #editorLayout td.lastvisible {
+            border: none;
+        }
+
+
+    #editorLayout tr:nth-child(2) {
+        height: 100%;
+    }
+
+.dark #editorLayout td {
+    border-right-color: #444444;
+    padding: 0px;
+}
+
+.warp-container {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+#btnClearConsole {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 16px;
+    z-index: 1;
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+    #btnClearConsole:hover {
+        opacity: 1;
+    }
+
+.console, .errors, .tasks {
+    height: 100%;
+    position: absolute;
+    font-size: 0.75em;
+    overflow-y: scroll;
+    width: 100%;
+    background-color: #FFF;
+}
+
+.dark .console, .dark .errors {
+    background-color: #1D1F21;
+}
+
+.error-entry, .task-entry {
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+
+    .error-entry .lineNr, .task-entry .lineNr {
+        width: 10%;
+        float: left;
+        padding: 2px;
+    }
+
+    .error-entry .error-content, .task-entry .task-content {
+        width: 90%;
+        padding: 2px;
+    }
+
+
+.console-entry {
+    border-bottom: 1px solid #eee;
+}
+
+    .console-entry.status0 {
+    }
+
+    .console-entry.status1 {
+        color: orange;
+    }
+
+    .console-entry.status2 {
+        color: orangered;
+    }
+
+    .console-entry th {
+        font-size: 0.8em;
+        text-align: left;
+        padding: 3px !important;
+        border-bottom: 1px solid #AAA;
+        background-color: #CCC;
+    }
+
+    .console-entry td {
+        border-right-width: 0px !important;
+    }
+
+    .console-entry table {
+        font-size: 1em;
+        width: 100%;
+    }
+
+    .console-entry tr:nth-child(2n) {
+        background-color: #F5F5F5;
+    }
+
+.dark .console-entry, .dark .error-entry, .dark .task-entry {
+    border-bottom: 1px solid #444;
+}
+
+    .dark .console-entry th {
+        background-color: #333;
+    }
+
+
+    .dark .console-entry tr:nth-child(2n) {
+        background-color: #373b40;
+    }
+
+.editor-container {
+    position: relative;
+    /* padding:20px; */
+    height: 100%;
+    width: 100%;
+    float: left;
+}
+
+.btn-toolbar {
+    margin-bottom: 0px !important;
+}
+
+.btn-group {
+    vertical-align: top !important;
+}
+
+    .btn-group h4 {
+        margin: 0px;
+    }
+
+.tab {
+    cursor: pointer;
+}
+
+.dark .error-bar {
+    background-color: #AA4444;
+}
+
+.error-bar {
+    background-color: #FFCCCC;
+    font-family: Monaco, Menlo, 'Ubuntu Mono', Consolas, source-code-pro, monospace;
+    padding-left: 3px;
+    font-weight: bold;
+    cursor: pointer;
+    color: black;
+    height: 20px;
+}
+
+#editorHTML, #editorCSS, #editorJavascript, #editorTypescript {
+    position: absolute;
+    max-height: 10000px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+
+
+.editor-area {
+    height: 100%;
+    /* margin-bottom:20px; */
+}
+
+.typescript-ref {
+    position: absolute;
+    border-bottom: 1px solid #AAA;
+    opacity: 0.7;
+}
+
+.typescript-error {
+    position: absolute;
+    border-bottom: 1px solid red;
+}
+
+.typescript-runtime-error {
+    position: absolute;
+    background-color: #FFEE62;
+    z-index: 10;
+}
+
+#txtHeaderDescription {
+    float: left;
+    font-size: 10px;
+}
+
+#lnkUpdateDescription {
+    float: left;
+    margin-left: 10px;
+}
+
+#javascript-run {
+    margin: 0px;
+    margin-top: 10px;
+    padding: 5px;
+    background: #999;
+    color: white;
+}
+
+#quickInfo {
+    background: white;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    min-width: 150px;
+    font: 12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+    padding: 1px;
+    pointer-events: none; /*required so you can click through to the element below it */
+}
+
+    #quickInfo .highlight {
+        font-weight: bold;
+    }
+
+.quickinfo-row {
+    border-bottom: 1px solid #EEE;
+}
+
+.ace_autocomplete {
+    height: 226px;
+    background: white;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    min-width: 150px;
+}
+
+    .ace_autocomplete ul {
+        /*width: 400px;*/
+        margin: 0px;
+        padding: 2px;
+    }
+
+    .ace_autocomplete li:hover {
+    }
+
+    .ace_autocomplete li {
+        padding: 1px;
+        line-height: 1.2em;
+        height: 1.2em;
+        overflow: hidden;
+    }
+
+.ace_autocomplete_comments {
+    position: absolute;
+    bottom: 0px;
+    max-height: 40px;
+    width: 100%;
+    background-color: #FFFFCC;
+    border-top: 1px solid #EEE;
+    font-family: Helvetica;
+    font-size: 0.8em;
+    padding: 3px;
+}
+
+.ace_autocomplete_selected {
+    background: #eee;
+}
+
+    .ace_autocomplete_selected .label-name {
+        font-weight: bold;
+    }
+
+.dark .ace_autocomplete {
+    background-color: #1D1F21;
+    border: 1px solid #666;
+}
+
+.dark .ace_autocomplete_selected {
+    background-color: #666;
+}
+
+.dark .ace_autocomplete_comments {
+    background-color: #333;
+    border-top: 1px solid #666;
+}
+
+.dark #quickInfo {
+    background-color: #1D1F21;
+    border: 1px solid #666;
+}
+
+.dark .quickinfo-row {
+    border-bottom: 1px solid #333;
+}
+
+.label-kind {
+    /*background:#666;*/
+    color: white;
+    width: 16px;
+    height: 100%;
+    position: absolute;
+    background-repeat: no-repeat;
+}
+
+.label-name {
+    margin-left: 20px;
+}
+
+.ace_autocomplete li[data-name] {
+    position: relative;
+}
+
+.label-kind-constructor {
+    background-image: url('./icons/ctor.png');
+}
+
+.label-kind-module {
+    background-image: url('./icons/namespace.png');
+}
+
+.label-kind-enum {
+    background-image: url('./icons/enum.png');
+}
+
+.label-kind-const {
+    background-image: url('./icons/const.png');
+}
+
+.label-kind-keyword {
+    background-image: url('./icons/keyword.png');
+}
+
+.label-kind-property {
+    background-image: url('./icons/property.png');
+}
+
+.label-kind-getter, .label-kind-setter {
+    background-image: url('./icons/gettersetter.png');
+}
+
+.label-kind-method, .label-kind-function {
+    background-image: url('./icons/method.png');
+}
+
+.label-kind-interface {
+    background-image: url('./icons/interface.png');
+}
+
+.label-kind-class {
+    background-image: url('./icons/class.png');
+}
+
+.label-kind-variable, .label-kind-var, .label-kind-local-var, .label-kind-parameter, .label-kind-let {
+    background-image: url('./icons/field.png');
+}
+
+.label-kind-script, .label-kind-snippet {
+    background-image: url('./icons/snippet.png');
+}
+
+.label-overlay {
+    position: absolute;
+    width: 16px;
+    height: 100%;
+    left: 0px;
+    background-repeat: no-repeat;
+}
+
+.label-modifier-public {
+}
+
+.label-modifier-static {
+    background-image: url('./icons/overlayStatic.png');
+}
+
+.label-modifier-abstract {
+    background-image: url('./icons/overlayAbstract.png');
+}
+
+.label-modifier-protected {
+    background-image: url('./icons/overlayProtected.png');
+}
+
+.label-modifier-private {
+    background-image: url('./icons/overlayPrivate.png');
+}
+
+.label-type {
+    padding-left: 10px;
+    color: lightgrey;
+    font-size: 0.9em;
+}
+
+.ace_autocomplete_selected .label-type {
+    color: blue;
+    visibility: visible;
+}
+
+.outputframe {
+    width: 100%;
+    height: 100%;
+    border-width: 0px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+#outputIFrame {
+    width: 100%;
+    height: 100%;
+    border-width: 0px;
+}
+
+
+#txtNavTreeFilter {
+    width: 100%;
+    float: left;
+    margin-left: -40px;
+}
+
+.typescript-navigation {
+    height: 100%;
+    float: left;
+    width: 100%;
+    word-wrap: inherit;
+    position: absolute;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-color: #FFF;
+}
+
+.dark .typescript-navigation {
+    background-color: #1D1F21;
+}
+
+.dark input[type=text] {
+    background-color: #444;
+    border: 1px solid #222;
+    color: silver;
+}
+
+.button-icon {
+    margin: 2px;
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    float: left;
+    cursor: pointer;
+}
+
+#btnExpandAllNavTree {
+    background-image: url("icons/expandcollapseall.png");
+}
+
+#btnCollapseAllNavTree {
+    background-image: url("icons/expandcollapseall.png");
+    background-position: -16px 0px;
+}
+
+.typescript-editorcontainer.pad-left {
+    left: 20%;
+}
+
+.toggle-navigationTree {
+    height: 100%;
+    width: 20px;
+    float: left;
+    cursor: pointer;
+}
+
+#navTree {
+    width:100%;
+}
+.navItem {
+    background-repeat: no-repeat;
+    background-position: 0px 3px;
+    padding-left: 20px;
+}
+
+    .navItem.leaf {
+        cursor: pointer;
+    }
+
+    .navItem.selected {
+        font-weight: 600;
+    }
+
+.dark .navItem.selected {
+    background-color: rgb(80,80,80);
+}
+
+
+/* to make scrollbars always visible */
+.ps-container > .ps-scrollbar-x-rail,
+.ps-container > .ps-scrollbar-y-rail {
+    opacity: 0.6 !important;
+}
+
+
+/*
+ * CSS3 Treeview. No JavaScript
+ * @version 1.0
+ * @author Martin Ivanov
+ * @url developer's website: http://wemakesites.net/
+ * @url developer's twitter: https://twitter.com/#!/wemakesitesnet
+ * @url developer's blog http://acidmartin.wordpress.com/
+ **/
+.css-treeview {
+    min-width: 200px;
+    margin-left: 0px;
+}
+
+    .css-treeview ul,
+    .css-treeview li {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    .css-treeview input {
+        position: absolute;
+        opacity: 0;
+    }
+
+.css-treeview {
+    font: normal 11px "Segoe UI", Arial, Sans-serif;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+    .css-treeview a {
+        color: #00f;
+        text-decoration: none;
+    }
+
+        .css-treeview a:hover {
+            text-decoration: underline;
+        }
+
+    .css-treeview input + label + ul {
+        margin: 0 0 0 10px;
+    }
+
+    .css-treeview input ~ ul {
+        display: none;
+    }
+
+    .css-treeview label,
+    .css-treeview label::before {
+        cursor: pointer;
+    }
+
+    .css-treeview input:disabled + label {
+        cursor: default;
+        opacity: .6;
+    }
+
+    .css-treeview input:checked:not(:disabled) ~ ul {
+        display: block;
+    }
+
+    .css-treeview label,
+    .css-treeview label::before {
+        background: url("icons/treeview.png") no-repeat;
+    }
+
+        .css-treeview label,
+        .css-treeview a,
+        .css-treeview label::before {
+            display: inline-block;
+            height: 16px;
+            line-height: 16px;
+            vertical-align: middle;
+        }
+
+    .css-treeview label {
+        /*background-position: 18px 0;*/
+        background-position: -16px 0;
+        /*width: 500px;*/
+        position: relative;
+        white-space: nowrap;
+    }
+
+        .css-treeview label .label-overlay {
+            left: 14px;
+            top: 1px;
+        }
+
+        .css-treeview label::before {
+            content: "";
+            width: 16px;
+            /*margin: 0 22px 0 0;*/
+            vertical-align: middle;
+            background-position: 0 -32px;
+            margin-top: -2px;
+        }
+
+    .css-treeview input:checked + label::before {
+        background-position: 0 -16px;
+    }
+
+    .css-treeview .leaf label::before {
+        visibility: hidden;
+    }
+
+/* webkit adjacent element selector bugfix */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    .css-treeview {
+        -webkit-animation: webkit-adjacent-element-selector-bugfix infinite 1s;
+    }
+
+    @-webkit-keyframes webkit-adjacent-element-selector-bugfix {
+        from {
+            padding: 0;
+        }
+
+        to {
+            padding: 0;
+        }
+    }
+}
+
+/* ------------------------ */
+
+.lm_content {
+    position: relative;
+}
+
+
+/*-------------------------*/
+
+
+
+.ace_gutter-cell.ace_errorfix {
+    background-image:  url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAwFBMVEXYQk/dW2bjd4DniJDokJfsoKfH1e6vtsJRaotLYHlccIevucSFrNCzwMyEo7z59sL9/Oz48q/9++T77rL777L88sS6rXn88sa1p3Pvx0f94H/86a/60WT702X43I796K7uujnvuD/ttz//57XtsD/srz/vvWHzv2Pyv2Pxvmbxv2bsqkDsrEP///////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4Bt0NAAAAL3RSTlP/////////////////////////////////////////////////////////////AFqlOPcAAAABYktHRD8+YzB1AAAACXBIWXMAAABIAAAASABGyWs+AAAAgklEQVQY013P6RKCIBQF4ItBli1ule2WqGV2eP/HExVTOsz9881wF1J/IV1oMwGU9bcuMUL1llK+PvhBfkn1K0Z47pJ9Ememk4ZHGEQB9engfvLhkyOYcHrA+YobCXAIMnsc5kdiHJwNsMbChq3r2V82y1XXdGagPWY6VqnhQLOYnQbb5CFRHKTehwAAAABJRU5ErkJggg==');
+    background-repeat: no-repeat;
+    background-position: 2px center;
+}

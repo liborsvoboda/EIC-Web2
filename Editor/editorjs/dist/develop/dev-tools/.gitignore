@@ -1,0 +1,9 @@
+.idea
+node_modules
+build
+.yarn
+.DS_Store
+editorjs.config.ts
+index.html
+dist
+stand.js

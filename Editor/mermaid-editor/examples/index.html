@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.2.0/dist/mermaid.min.js"></script>
+    <style>
+        .mermaid {
+            border: 1px solid rgba(128, 128, 128, 0.6);
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <pre class="mermaid">
+        flowchart LR
+        Start --> Stop
+    </pre>
+
+    <pre class="mermaid">
+        graph TD 
+        A[Client] -->|tcp_123| B
+        B(Load Balancer) 
+        B -->|tcp_456| C[Server1] 
+        B -->|tcp_456| D[Server2]
+    </pre>
+
+    <pre class="mermaid">
+        graph TB
+        A[Square Rect] -- Link text --> B[32424]
+        A --> C
+        B --> D
+        C --> D
+        C --> B
+        D --> A
+    </pre>
+</body>
+</html>

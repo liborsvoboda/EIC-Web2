@@ -1,0 +1,14 @@
+/*!
+ * isobject <https://github.com/jonschlinkert/isobject>
+ *
+ * Copyright (c) 2014-2015, Jon Schlinkert.
+ * Licensed under the MIT License.
+ */
+
+/*! https://mths.be/cssesc v3.0.0 by @mathias */
+
+/**
+ * line-column - Convert efficiently index to/from line-column in a string
+ * @module  lineColumn
+ * @license MIT
+ */

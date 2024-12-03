@@ -1,0 +1,32 @@
+[
+  {
+    "id": "docs",
+    "label": "Docs",
+    "href": "/docs/getting-started/introduction",
+    "external": false
+  },
+  {
+    "id": "guides",
+    "label": "Guides",
+    "href": "/guides",
+    "external": false
+  },
+  {
+    "id": "blog",
+    "label": "Blog",
+    "href": "/blog",
+    "external": false
+  },
+  {
+    "id": "community",
+    "label": "Community",
+    "href": "/community",
+    "external": false
+  },
+  {
+    "id": "teams",
+    "label": "Teams",
+    "href": "/teams",
+    "external": false
+  }
+]

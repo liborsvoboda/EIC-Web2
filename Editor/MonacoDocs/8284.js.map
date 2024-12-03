@@ -1,0 +1,1 @@
+{"version":3,"file":"8284.js","mappings":"8IAAA,2D","sources":["file:///E:\\Downloads\\monaco-editor-main\\website\\src\\website\\data\\playground-samples\\creating-the-editor\\hard-wrapping\\sample.html"],"sourcesContent":["export default \"<div id=\\\"container\\\" style=\\\"height: 100%\\\"></div>\\n\";"],"names":[],"sourceRoot":""}

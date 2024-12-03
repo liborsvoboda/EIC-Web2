@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jenoduchý Editor se Zvýrazněním kódu</title>
+    <!-- css -->
+    <link rel="stylesheet" href="./css/simple-code-editor.css" />
+    <link rel="stylesheet" href="./css/themes/themes-base16.css" />
+    <link rel="stylesheet" href="./css/themes/themes.css" />
+</head>
+
+<body style="height:100%;background-color: #ddd">
+    <div id="app">
+        <code-editor id="codeEditor"
+                     theme="vs2015"
+                     :line-nums="true"
+                     style="margin: 0px auto"
+                     v-model="value"
+                     width="100%"
+                     max-width="100%"
+                     height="50%"
+                     max-height="50%"
+                     :languages="[['javascript', 'JS'], ['html', 'HTML'], ['css', 'CSS'], ['cs', 'CS'], ['sql', 'SQL']]
+        "></code-editor>
+    </div>
+    <!-- js -->
+    <script src="./js/vue@3.3.4.min.js"></script>
+    <script src="./js/highlight.min.js"></script>
+    <script src="./js/simple-code-editor.js"></script>
+    <script>
+        const app = Vue.createApp({
+            components: {
+                "code-editor": CodeEditor,
+            },
+            data() {
+                return {
+                    value: `import CodeEditor from 'CodeEditor';
+                        export default {
+                            components: {
+                              CodeEditor
+                            },
+                            data() {
+                                return {
+                                  value: ''
+                                }
+                            }
+                        }`,
+                };
+            },
+        });
+        app.mount("#app");
+    </script>
+
+
+    <button style="position:absolute; right:10px; top: 10px;" onclick="TransferToHTML()">Spustit kód v HTML</button>
+    <link href="../../metro/css/metro-all.min.css" rel="stylesheet" />
+    <link href="../../metro/css/metro-icons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../tools/animate/css/animate.css" />
+    <link rel="stylesheet" href="../../tools/flexslider/css/flexslider.css" />
+    <link rel="stylesheet" href="../../tools/highlightjs/styles/default.min.css" />
+    <script type="text/javascript" src="../../metro/js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="../../tools/flexslider/js/jquery.flexslider-min.js"></script>
+    <script type="text/javascript" src="../../metro/js/metro.4.5.2.min.js"></script>
+    <link rel="stylesheet" href="../../tools/summernote/css/summernote.css">
+    <script type="text/javascript" src="../../tools/summernote/js/summernote.js"></script>
+    <div id="Summernote"><div data-role="calendar"></div></div>
+    <script>
+        $('#Summernote').summernote({
+            tabsize: 2, height: 600, maxHeight: 2000,
+            toolbar: [['style', ['style']], ['font', ['bold', 'underline', 'clear']], ['fontname', ['fontname']],
+            ['fontsize', ['fontsize']], ['color', ['color']], ['para', ['ul', 'ol', 'paragraph']], ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']], ['view', ['fullscreen', 'codeview', 'undo', 'redo', 'help']]]
+        });
+
+        function TransferToHTML() {
+            $('#Summernote').summernote('code', ($("#codeEditor > div > div.code-area > textarea")[0].value));
+        }
+    </script>
+</body>
+</html>

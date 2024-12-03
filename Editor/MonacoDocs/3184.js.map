@@ -1,0 +1,1 @@
+{"version":3,"file":"3184.js","mappings":"8IAAA,8E","sources":["file:///E:\\Downloads\\monaco-editor-main\\website\\src\\website\\data\\home-samples\\sample.redis.txt"],"sourcesContent":["export default \"EXISTS mykey\\nAPPEND mykey \\\"Hello\\\"\\nAPPEND mykey \\\" World\\\"\\nGET mykey\";"],"names":[],"sourceRoot":""}

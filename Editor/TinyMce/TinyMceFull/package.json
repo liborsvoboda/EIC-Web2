@@ -1,0 +1,54 @@
+{
+  "description": "Official TinyMCE Web Component",
+  "repository": {
+    "url": "https://github.com/tinymce/tinymce-webcomponent"
+  },
+  "files": [
+    "dist",
+    "CHANGELOG.md",
+    "README.md",
+    "LICENSE.txt"
+  ],
+  "main": "dist/tinymce-webcomponent.js",
+  "scripts": {
+    "test": "bedrock-auto -b chrome-headless -d src/test/ts",
+    "build": "tsc -p ./tsconfig.json && rollup -c rollup.config.js",
+    "lint": "yarn eslint src/**/*.ts",
+    "serve": "yarn ts-node -r esm src/demo/ts/Server.ts"
+  },
+  "keywords": [
+    "TinyMCE",
+    "webcomponent"
+  ],
+  "author": "Tiny Technologies",
+  "license": "MIT",
+  "devDependencies": {
+    "@ephox/agar": "^7.4.1",
+    "@ephox/bedrock-client": "^13.0.0",
+    "@ephox/bedrock-server": "^13.3.0",
+    "@ephox/katamari": "^9.1.5",
+    "@ephox/sugar": "^9.2.1",
+    "@ephox/swag": "^4.6.0",
+    "@tinymce/beehive-flow": "^0.19.0",
+    "@tinymce/eslint-plugin": "^2.2.1",
+    "@types/esm": "^3.2.0",
+    "@types/express": "^4.17.15",
+    "@types/node": "^18.11.18",
+    "@typescript-eslint/eslint-plugin": "^5.48.2",
+    "@typescript-eslint/parser": "^5.48.2",
+    "eslint": "^8.32.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
+    "esm": "^3.2.25",
+    "express": "^4.18.2",
+    "rollup": "^3.20.1",
+    "tinymce": "^6.3.1",
+    "ts-loader": "^9.4.2",
+    "ts-node": "^10.9.1",
+    "typescript": "~5.0.2",
+    "webpack": "^5.75.0"
+  },
+  "dependencies": {},
+  "version": "2.1.1-rc",
+  "name": "@tinymce/tinymce-webcomponent"
+}

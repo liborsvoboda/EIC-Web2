@@ -1,0 +1,1 @@
+{"version":3,"file":"7116.js","mappings":"8IAAA,mF","sources":["file:///E:\\Downloads\\monaco-editor-main\\website\\src\\website\\data\\home-samples\\sample.msdax.txt"],"sourcesContent":["export default \" = CALCULATE(SUM(Sales[SalesAmount]), PREVIOUSQUARTER(Calendar[DateKey]))\";"],"names":[],"sourceRoot":""}

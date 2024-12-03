@@ -1,0 +1,7 @@
+dist/*
+lib/*
+node_modules
+package-lock.json
+scratch
+/.idea
+yarn-error.log

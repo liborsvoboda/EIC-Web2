@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2003-2023, CKSource Holding sp. z o.o. All rights reserved.
+For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+-->
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+	<link type="text/css" href="sample/css/sample.css" rel="stylesheet" media="screen" />
+	<title>CKEditor 5 – classic editor build sample</title>
+	
+	    <link href="../../metro/css/metro-all.min.css" rel="stylesheet" />
+    <link href="../../metro/css/metro-icons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../tools/animate/css/animate.css" />
+    <link rel="stylesheet" href="../../tools/flexslider/css/flexslider.css" />
+    <link rel="stylesheet" href="../../tools/highlightjs/styles/default.min.css" />
+    <script type="text/javascript" src="../../metro/js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="../../tools/flexslider/js/jquery.flexslider-min.js"></script>
+    <script type="text/javascript" src="../../metro/js/metro.4.5.2.min.js"></script>
+</head>
+<body>
+
+
+	<div class="centered">
+		<div id="editor">
+			<div data-role="calendar"></div>
+	</div>
+
+
+<script src="./ckeditor.js"></script>
+<script src="./translations/cs.js"></script>
+<script>
+	ClassicEditor
+		.create( document.querySelector( '#editor' ), {
+			language: 'cs'
+			// toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
+		} )
+		.then( editor => {
+			window.editor = editor;
+		} )
+		.catch( err => {
+			console.error( err.stack );
+		} );
+</script>
+
+</body>
+</html>

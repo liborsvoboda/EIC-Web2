@@ -1,0 +1,13 @@
+import React from "react";
+import { EditorProps, ExternalEditorAPI } from "./Editor";
+import { GqlEditorProps } from "./GqlEditor";
+import { EditorRoutes } from "../state/containers/router";
+import { EmbeddedEditorProps } from "./EmbeddedEditor";
+import { CodePaneApi } from "./code";
+export { ExternalEditorAPI };
+export { DiffSchema } from "./code/DiffEditorPane";
+export declare const GraphQLEditor: React.ForwardRefExoticComponent<EditorProps & React.RefAttributes<ExternalEditorAPI>>;
+export declare const EmbeddedGraphQLEditor: ({ ...props }: EmbeddedEditorProps) => React.JSX.Element;
+export declare const GraphQLGqlEditor: ({ ...props }: GqlEditorProps) => React.JSX.Element;
+export declare const GraphQLSdlCodeDisplay: React.ForwardRefExoticComponent<Pick<EditorProps, "path" | "theme" | "schema"> & React.RefAttributes<CodePaneApi>>;
+export { EditorRoutes };

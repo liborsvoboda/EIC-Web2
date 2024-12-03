@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkmy_application=self.webpackChunkmy_application||[]).push([[1048],{1048:(e,l,n)=>{n.r(l),n.d(l,{default:()=>t});const t='<!DOCTYPE html>\n<html>\n    <head>\n        <meta charset="UTF-8">\n        <title>{% block title %}Welcome!{% endblock %}</title>\n        {% block stylesheets %}{% endblock %}\n    </head>\n    <body>\n        {% block body %}{% endblock %}\n        {% block javascripts %}{% endblock %}\n    </body>\n</html>\n'}}]);
+//# sourceMappingURL=1048.js.map

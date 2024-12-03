@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Html Editor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <meta name="charset" content="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="author" content="Libor Svoboda">
+    <meta name="description" content="EasyITCenter">
+    <meta name="keywords" content="System, Backend, API, EASY-DATA-Center, EASY-SYSTEM-Builder, Application, Server, IT, Solution, Help, HowTo, Javascript, HTML5, UI, Library, Web, Development, Framework">
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="~/favicon.ico" type="image/x-icon">
+
+    <link href="./css/metro-all.min.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="./js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="./js/metro.min.4.5.2.js"></script>
+</head>
+    <body>
+    <div class="d-block w-100 h-100">
+		<script type="text/javascript" src="./tinymce.min.js"></script>
+		<script>
+			const standardEditor = {
+				selector: 'textarea#Body',
+				skin: 'oxide-dark',
+				content_css: 'dark',
+				width: window.innerWidth,
+				height: window.innerHeight,
+				plugins: [
+					'advlist', 'autolink', 'link', 'image', 'lists', 'charmap', 'preview', 'anchor', 'pagebreak',
+					'searchreplace', 'wordcount', 'visualblocks', 'visualchars', 'code', 'fullscreen', 'insertdatetime',
+					'insertdatetime', ' checklist ', 'wordcount', ' tinymcespellchecker ', 'editimage', 'media', 'table', 'emoticons', 'help'
+				],
+				toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | ' +
+					'bullist numlist outdent indent | link image | print preview media fullscreen | ' + 'forecolor backcolor emoticons | help',
+				menu: { menubar: 'favs file edit view insert format tools table help', content_css: 'css/content.css' }
+			};
+
+			tinymce.init(standardEditor);
+		</script>
+
+
+		<div class="d-inline-flex form-outline bg-cyan">
+			<div style="width:200px;height:100%;">
+				<div class="d-block h-100">
+					<input id="reason" class="form-control w-100" placeholder="Důvod Úpravy" />
+					
+				</div>
+			</div>
+			<div class="d-block">
+
+
+			</div>
+			<div id="editorSection">
+				<textarea id="Body" class="form-control">
+				TEST 
+				</textarea>
+			</div>
+		</div>
+	</div>
+	</body>
+</html>
